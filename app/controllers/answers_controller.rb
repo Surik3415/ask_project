@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
   include ActionView::RecordIdentifier
 
-  before_action :set_question
+  before_action :set_question 
   before_action :set_answer, only: %i[destroy edit update]
 
   def create
