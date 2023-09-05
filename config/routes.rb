@@ -1,20 +1,18 @@
+# frozen_string_literal: true
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resource :session, only: %i[new create destroy]
 
-  # Defines the root path route ("/")
-  # root "articles#index"
-  resources :sessions, only: %i[new create destroy]
-
-  resources :users, only: %i[new create]
+  resources :users, only: %i[new create edit update]
 
   resources :questions do
     resources :answers, except: %i[new show]
   end
-  # get '/questions', to: 'questions#index'
 
-  # get '/questions/new', to: 'questions#new'
-
-  # post '/questions', to: 'questions#create'
+  namespace :admin do
+    resources :users, only: %i[index create]
+  end
 
   root 'pages#index'
 end

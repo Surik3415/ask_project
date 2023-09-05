@@ -1,63 +1,40 @@
-<% provide :page_title, 'Show question'%>
-<% currently_at 'Show question'%>
-<h1 class="mb-4"<%= @question.title%></h1>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<% provide :page_title, @question.title %>
+<% currently_at t('menu.questions') %>
 
-<p>
-    <time datetime="<%=@question.formatted_created_at%>">
-    <%= @question.formatted_created_at%> 
-    </time>
-    <br>
-    <h1><%= @question.body%></h1>
+<h1 class="mb-4"><%= @question.title %></h1>
 
-</p> 
+<time datetime="<%= @question.decorate.formatted_created_at %>">
+  <%= @question.decorate.formatted_created_at %>
+</time>
 
-<%= link_to "Show", question_path(@question), class:'btn btn-primary' %>
-<%= link_to "Edit", edit_question_path(@question), class:'btn btn-secondary' %>
-<%= link_to "Destroy", question_path(@question),class:'btn btn-danger', data: {method: :delete, confirm: "Are you sure?"} %>
+<div class="lead my-3">
+  <%= sanitize @question.body %>
+</div>
 
-<hr class="my-3">
+<div class="mb-3">
+  <%= @question.user.gravatar %>
+  <%= @question.user.name_or_email %>
+</div>
 
-<h2>Write your answer</h2>
+<div class="border-top border-bottom py-3">
+  <div class="btn-group">
+    <%= link_to t('global.button.show'), question_path(@question), class: 'btn btn-primary' %> 
+    <%= link_to t('global.button.edit'), edit_question_path(@question), class: 'btn btn-secondary' %>
+    <%= link_to t('global.button.delete'), question_path(@question), class: 'btn btn-danger',
+      data: {method: :delete, confirm: t('global.dialog.you_sure')} %>
+  </div>
+</div>
 
-<%= render 'shared/errors', object: @answer %>
+<h2 class="my-3"><%= t '.write_answer' %></h2>
 
-<%= form_with model: [@question, @answer] do |f|%>
+<%= render 'answers/form' %>
 
-    <div class ="mb-3 row">
-        <div class ="col-sm-2 col-form-label">
-            <%= f.label :body, class: 'col-sm-2 col-form-label'%>
-        </div>
+<h2 class="mt-5 mb-3"><%= t '.answers' %></h2>
 
-        <div class ="col-sm-10">
-        <%= f.text_area :body, class:'form-control' %>
-        </div>
-    </div>
-    
-    <%= f.submit "Submit answer", class: 'btn btn-primary'%>
-<%end%>
-
-<h2 class="mt-5 mb-3">Answers</h2>
-
-<%# <% @answers.each do |answer| %>
-  <%# <article class = "mb-3 card" id = "answer-<%= answer.id %>
-    <%# <div class="my-3 mx-3"> %>
-          <%# <time datetime="<%= answer.formatted_created_at%>
-          <%# <%= answer.formatted_created_at%>  
-          <%# </time> %>
-        <%# <section> %>
-          <%# <div> %>
-            <%# <p> %>
-            <%# <%=answer.body%>
-            <%# </p> %>
-          <%# </div> %>
-        <%# </section> %>
-        <%# <%= link_to "Delete", question_answer_path(@question, answer), class:'btn btn-danger btn-sm', data: {method: :delete, confirm: "Are you sure?"} %> 
-        <%# <%= link_to "Edit", edit_question_answer_path(@question, answer), class:'btn btn-secondary btn-sm'%> 
-    <%# </div> %>
-  <%# </article> %>
-
-<%# <% end %> 
+<%== pagy_bootstrap_nav(@pagy) if @pagy && @pagy.pages > 1 %>
 
 <%= render partial: 'answers/answer', collection: @answers,
-as: :answer, locals: {question: @question}%>
-<%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+  as: :answer, locals: {question: @question} %>
+
+<%== pagy_bootstrap_nav(@pagy) if @pagy && @pagy.pages > 1 %>

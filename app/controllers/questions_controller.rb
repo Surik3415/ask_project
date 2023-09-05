@@ -1,21 +1,27 @@
+# frozen_string_literal: true
+
 class QuestionsController < ApplicationController
   before_action :set_question, only: %i[show destroy edit update]
 
   def index
-    # Take all questions
-    # @questions = Question.all
-    # Take questions, order and collect limited questions (default 25)
-    # @questions = Question.order(created_at: :desc).page params[:page]
     @pagy, @questions = pagy Question.order(created_at: :desc)
     @questions = @questions.decorate
+  end
+
+  def show
+    @question = @question.decorate
+    @answer = @question.answers.build
+    @pagy, @answers = pagy @question.answers.order(created_at: :desc).decorate
   end
 
   def new
     @question = Question.new
   end
 
+  def edit; end
+
   def create
-    @question = Question.new question_params
+    @question = current_user.questions.build(question_params).decorate
     if @question.save
       flash[:success] = 'Question created'
       redirect_to questions_path
@@ -23,8 +29,6 @@ class QuestionsController < ApplicationController
       render :new
     end
   end
-
-  def edit; end
 
   def update
     if @question.update question_params
@@ -39,15 +43,6 @@ class QuestionsController < ApplicationController
     @question.destroy
     flash[:success] = 'Question deleted'
     redirect_to questions_path
-  end
-
-  def show
-    @question = @question.decorate
-    @answer = @question.answers.build
-    # @answers = @question.answers.order created_at: :desc
-    # @answers = @question.answers.order(created_at: :desc).page(params[:page]).per(2)
-    @pagy, @answers = pagy @question.answers.order(created_at: :desc)
-    @answers = @answers.decorate
   end
 
   private
