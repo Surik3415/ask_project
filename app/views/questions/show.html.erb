@@ -8,7 +8,9 @@
   <%= @question.decorate.formatted_created_at %>
 </time>
 
-<div class="lead my-3">
+<div class="fs-4 mt-3"> Question </div>
+
+<div class="lead my-3 fs-4">
   <%= sanitize @question.body %>
 </div>
 
@@ -17,23 +19,31 @@
   <%= @question.user.decorate.name_or_email %>
 </div>
 
-<%= render 'comments/commentable', commentable: @question, comment: @comment,
-  html_id: 'questionComments' %>
-  
 <div class="border-top border-bottom py-3">
   <div class="btn-group">
+  <% if policy(@question).edit? %>
     <%= link_to t('global.button.edit'), edit_question_path(@question), class: 'btn btn-secondary' %>
+  <% end %>
+  <% if policy(@question).destroy? %>
     <%= link_to t('global.button.delete'), question_path(@question), class: 'btn btn-danger',
       data: {method: :delete, confirm: t('global.dialog.you_sure')} %>
   </div>
+   <% end %>
 </div>
 
+<div class="fs-4"> Write your comment </div>
+
+<%= render 'comments/commentable', commentable: @question, comment: @comment,
+  html_id: 'questionComments' %>
+
+<% if policy(:answer).create? %>
 <h2 class="my-3"><%= t '.write_answer' %></h2>
 
-<%= render 'answers/form' %>
-
-<h2 class="mt-5 mb-3"><%= t '.answers' %></h2>
-
+  <%= render 'answers/form' %>
+<% end %>
+<% if @answers.present? %> 
+  <h2 class="mt-5 mb-3 fs-4"><%= t '.answers' %></h2>
+<% end %>
 <%== pagy_bootstrap_nav(@pagy) if @pagy && @pagy.pages > 1 %>
 
 <%= render partial: 'answers/answer', collection: @answers,

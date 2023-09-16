@@ -1,4 +1,4 @@
-class QuestionPolicy < ApplicationPolicy
+class CommentPolicy < ApplicationPolicy
 
   def index?
     true

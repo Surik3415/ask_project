@@ -13,7 +13,7 @@ class QuestionsController < ApplicationController
   def show
     @question = @question.decorate
     @answer = @question.answers.build
-    @pagy, @answers = pagy @question.answers.order(created_at: :desc).decorate
+    @pagy, @answers = pagy @question.answers.includes(:user).order(created_at: :desc).decorate
   end
 
   def new

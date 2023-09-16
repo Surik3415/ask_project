@@ -6,6 +6,7 @@ class AnswersController < ApplicationController
 
   before_action :set_question
   before_action :set_answer, only: %i[destroy edit update]
+  before_action :authorize_controller!
 
   def edit; end
 
@@ -42,6 +43,10 @@ class AnswersController < ApplicationController
   end
 
   private
+
+  def authorize_controller!
+    authorize(@answer || Answer)
+  end
 
   def set_question
     @question = Question.find params[:question_id]

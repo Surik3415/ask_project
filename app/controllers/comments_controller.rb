@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @commentable.comments.build comment_params
-
+    authorize(@comment)
     if @comment.save
       flash[:success] = t '.success'
       redirect_to question_path(@question)
@@ -20,6 +20,7 @@ class CommentsController < ApplicationController
 
   def destroy
     comment = @commentable.comments.includes(:user).find params[:id]
+    authorize(comment)
     comment.destroy
     flash[:success] = t '.success'
     redirect_to question_path(@question)

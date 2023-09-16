@@ -3,7 +3,9 @@
 
 <h1 class="mb-4"><%= t('.title') %></h1>
 
-<%= link_to t('.new'), new_question_path, class: 'btn btn-primary btn-lg mb-3' %>
+<% if policy(:question).create? %>
+  <%= link_to t('.new'), new_question_path, class: 'btn btn-primary btn-lg mb-3' %>
+<% end %>
 
 <%== pagy_bootstrap_nav(@pagy) if @pagy && @pagy.pages > 1 %>
 

@@ -50,7 +50,7 @@ gem 'dotenv-rails', '~> 2.7'
 gem 'draper', '~> 4.0'
 gem 'i18n-tasks', '~> 0.9.34'
 gem 'lokalise_rails', '~> 3'
-
+gem 'pry'
 gem 'bullet'
 gem 'faraday'
 gem 'jsonapi-serializer'
