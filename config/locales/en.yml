@@ -1,5 +1,7 @@
 ---
 en:
+  uk: Ukr
+  en: Eng
   activerecord:
     attributes:
       answer:
@@ -38,7 +40,6 @@ en:
       title: Edit answer
     update:
       success: Answer updated!
-  en: English
   global:
     button:
       delete: Delete
@@ -53,7 +54,7 @@ en:
     text:
       omission: "... (continued)"
   menu:
-    edit_profile: Profile
+    edit_profile: Edit profile
     home: Home
     log_in: Log In
     log_out: Log out
@@ -80,7 +81,6 @@ en:
       write_answer: Write your answer
     update:
       success: Question updated!
-  ru: Russian
   sessions:
     create:
       invalid_creds: Incorrect email and/or password!
@@ -107,3 +107,17 @@ en:
       title: Registration
     update:
       success: Your profile was successfully updated!
+  comments:
+      create:
+        success: Comment created!
+      destroy:
+        success: Comment deleted!
+  answers:
+    create:
+      success: Answer created!
+    destroy:
+      success: Answer deleted!
+    edit:
+      title: Edit answer
+    update:
+      success: Answer updated!

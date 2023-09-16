@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.2'
+ruby '3.2.2'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.4', '>= 7.0.4.1'
@@ -34,8 +34,6 @@ gem 'faker', '~> 3.1'
 
 gem 'pagy', '~> 6.0'
 
-gem 'draper', '~> 4.0'
-
 gem 'foreman'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
@@ -53,6 +51,9 @@ gem 'draper', '~> 4.0'
 gem 'i18n-tasks', '~> 0.9.34'
 gem 'lokalise_rails', '~> 3'
 
+gem 'bullet'
+gem 'faraday'
+gem 'jsonapi-serializer'
 gem 'pundit', '~> 2.1'
 gem 'rails-i18n', '~> 7'
 gem 'rubyXL', '~> 3.4'

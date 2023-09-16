@@ -1,0 +1,10 @@
+
+<% @parsed_response.each do |item| %>
+  <%= image_tag item, size: '300x300', alt: 'Harvard Art Museum Image' %>
+<% end %>
+
+<%== pagy_bootstrap_nav(@pagy) %>
+<%= @next_page %>
+<%= @prev%>
+<%# <%= link_to Pagy::Frontend[:nav_next], url_for(page: @next_page), class: 'page-link' %> %>
+<%# <%= link_to Pagy::Frontend[:nav_prev], url_for(page: @prev), class: 'page-link' %> %>

@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 class QuestionsController < ApplicationController
+  include Authorization
   before_action :set_question, only: %i[show destroy edit update]
+  before_action :authorize_controller!
 
   def index
-    @pagy, @questions = pagy Question.order(created_at: :desc)
+    @pagy, @questions = pagy Question.includes(:user).order(created_at: :desc)
     @questions = @questions.decorate
   end
 
@@ -46,6 +48,10 @@ class QuestionsController < ApplicationController
   end
 
   private
+
+  def authorize_controller!
+    authorize(@question || Question)
+  end
 
   def question_params
     params.require(:question).permit(:title, :body)

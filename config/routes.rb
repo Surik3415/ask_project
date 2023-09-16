@@ -1,18 +1,27 @@
 # frozen_string_literal: true
-# frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resource :session, only: %i[new create destroy]
-
-  resources :users, only: %i[new create edit update]
-
-  resources :questions do
-    resources :answers, except: %i[new show]
+  concern :commentable do
+    resources :comments, only: %i[create destroy]
   end
 
-  namespace :admin do
-    resources :users, only: %i[index create]
-  end
+  scope '(:locale)', locale: /#{I18n.available_locales.join('|')}/ do
+    resource :session, only: %i[new create destroy]
 
-  root 'pages#index'
+    resources :users, only: %i[new create edit update]
+
+    resources :questions, concerns: :commentable do
+      resources :answers, except: %i[new show]
+    end
+
+    resources :answers, except: %i[new show], concerns: :commentable
+
+    namespace :admin do
+      resources :users, only: %i[index create edit update destroy]
+    end
+
+    root 'pages#index'
+
+    get '/gallery', to: 'gallery#index'
+  end
 end

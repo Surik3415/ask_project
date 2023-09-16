@@ -88,6 +88,9 @@ GEM
       popper_js (>= 2.11.6, < 3)
       sassc-rails (>= 2.0.0)
     builder (3.2.4)
+    bullet (7.0.7)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     caxlsx (3.4.1)
       htmlentities (~> 4.3, >= 4.3.4)
       marcel (~> 1.0)
@@ -172,6 +175,8 @@ GEM
     jsbundling-rails (1.1.1)
       railties (>= 6.0.0)
     json (2.6.3)
+    jsonapi-serializer (2.2.0)
+      activesupport (>= 4.2)
     language_server-protocol (3.17.0.3)
     lokalise_manager (1.2.1)
       ruby-lokalise-api (~> 4.0)
@@ -317,6 +322,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.4.2)
+    uniform_notifier (1.16.0)
     valid_email2 (4.0.6)
       activemodel (>= 3.2)
       mail (~> 2.5)
@@ -339,6 +345,7 @@ DEPENDENCIES
   blueprinter (~> 0.25)
   bootsnap
   bootstrap (~> 5.2.3)
+  bullet
   caxlsx (~> 3.1)
   caxlsx_rails (~> 0.6)
   cssbundling-rails
@@ -346,10 +353,12 @@ DEPENDENCIES
   dotenv-rails (~> 2.7)
   draper (~> 4.0)
   faker (~> 3.1)
+  faraday
   foreman
   i18n-tasks (~> 0.9.34)
   jbuilder
   jsbundling-rails
+  jsonapi-serializer
   lokalise_rails (~> 3)
   pagy (~> 6.0)
   puma (~> 5.0)
@@ -369,7 +378,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 3.0.2p107
+   ruby 3.2.2p53
 
 BUNDLED WITH
    2.4.5

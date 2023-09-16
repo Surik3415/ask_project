@@ -1,0 +1,123 @@
+---
+uk:
+  uk: Укр
+  en: Англ
+  activerecord:
+    attributes:
+      answer:
+        body: Тіло
+        question: Питання
+      question:
+        body: Тіло
+        title: Заголовок
+      user:
+        created_at: Створено
+        email: Email
+        name: Ім'я
+        old_password: Старий пароль
+        password: Пароль
+        password_confirmation: Підтвердження паролю
+        updated_at: Оновлено
+    models:
+      question: Питання
+  admin:
+    users:
+      create:
+        success: Користувачі імпортовані!
+      index:
+        download_zipped: Завантажити у вигляді архіву XLSX
+        title: Адміністрація Користувачі
+        upload_form:
+          archive: Виберіть архів
+          submit: Завантажити!
+        upload_zipped: Завантажити користувачів із XLSX
+  answers:
+    create:
+      success: Відповідь створена!
+    destroy:
+      success: Відповідь видалена!
+    edit:
+      title: Редагувати відповідь
+    update:
+      success: Відповідь оновлена!
+  global:
+    button:
+      delete: Видалити
+      edit: Редагувати
+      show: Переглянути
+      submit: Відправити
+    dialog:
+      you_sure: Ви впевнені?
+    flash:
+      already_signed_in: Ви вже авторизовані!
+      not_signed_in: Ви не авторизовані!
+    text:
+      omission: "... (продовження)"
+  menu:
+    edit_profile: Редагувати профіль
+    home: Головна
+    log_in: Увійти
+    log_out: Вийти
+    questions: Питання
+    sign_up: Зареєструватися
+    users: Користувачі
+  pages:
+    index:
+      title: Ласкаво просимо до AskIt!
+  questions:
+    create:
+      success: Питання створено!
+    destroy:
+      success: Питання видалено!
+    edit:
+      title: Редагувати питання
+    index:
+      new: Нове питання
+      title: Питання
+    new:
+      title: Нове питання
+    show:
+      answers: Відповіді
+      write_answer: Напишіть вашу відповідь
+    update:
+      success: Питання оновлено!
+  sessions:
+    create:
+      invalid_creds: Невірний email та/або пароль!
+      success: Ласкаво просимо назад, %{name}!
+    destroy:
+      success: До побачення!
+    new:
+      form:
+        email: Email
+        password: Пароль
+        remember_me: Запам'ятати мене
+        submit: Увійти!
+      title: Увійти
+  users:
+    create:
+      success: Ласкаво просимо до додатку, %{name}!
+    edit:
+      title: Редагувати профіль
+    global:
+      forms:
+        register: Реєстрація
+        save: Зберегти
+    new:
+      title: Реєстрація
+    update:
+      success: Ваш профіль успішно оновлено!
+  comments:
+    create:
+      success: Комментар створено!
+    destroy:
+      success: Комментар видалено!
+  answers:
+    create:
+      success: Відповідь створено!
+    destroy:
+      success: Відповідь видалено!
+    edit:
+      title: Редагувати питання
+    update:
+      success: Відповідь обновлён!

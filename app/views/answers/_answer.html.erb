@@ -1,15 +1,15 @@
 <%= tag.article class: 'mb-3 card border-0', id: dom_id(answer) do %>
   <div class="row g-0">
     <div class="col-sm-auto text-sm-center align-self-center">
-      <%= answer.user.gravatar size: 50, css_class: 'd-block' %>
-      <%= answer.user.name_or_email %>
+      <%= answer.user.decorate.gravatar size: 50, css_class: 'd-block' %>
+      <%= answer.user.decorate.name_or_email %>
     </div>
     <div class="col-sm">
       <div class="card-body">
         <section class="card-text mb-3">
           <div class="col-sm-9">
-            <small><time datetime="<%= answer.formatted_created_at %>">
-              <%= answer.formatted_created_at %>
+            <small><time datetime="<%= answer.decorate.formatted_created_at %>">
+              <%= answer.decorate.formatted_created_at %>
             </time></small>
 
             <div class="mt-2">
@@ -26,3 +26,5 @@
     </div>
   </div>
 <% end %>
+<%= render 'comments/commentable', commentable: answer, comment: @comment,
+  html_id: dom_id(answer, 'comment_form') %>

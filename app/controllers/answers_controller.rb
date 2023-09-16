@@ -2,6 +2,7 @@
 
 class AnswersController < ApplicationController
   include ActionView::RecordIdentifier
+  include Authorization
 
   before_action :set_question
   before_action :set_answer, only: %i[destroy edit update]
@@ -15,7 +16,7 @@ class AnswersController < ApplicationController
       flash[:success] = 'Answer created'
       redirect_to question_path(@question)
     else
-      @answers = Answer.order created_at: :desc
+      @answers = Answer.includes(:user).order created_at: :desc
       render 'questions/show'
     end
   end
