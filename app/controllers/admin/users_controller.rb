@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
 module Admin
-  class UsersController < ApplicationController
+  class UsersController < BaseController
+    include Authorization
+
     before_action :require_authentication
     before_action :set_user, only: %i[edit update destroy]
+    before_action :authorize_user!
 
     def index
       respond_to do |format|
@@ -41,6 +44,10 @@ module Admin
     end
 
     private
+
+    def authorize_user!
+      authorize(@user || User)
+    end
 
     def user_params
       params.require(:user).permit(:email, :name, :password, :password_confirmation, :role).merge(admin_edit: true)
