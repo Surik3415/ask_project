@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Authorization
   extend ActiveSupport::Concern
 
@@ -8,7 +10,7 @@ module Authorization
     private
 
     def not_authorized
-      flash[:danger] = 'You have no right to enter this page'
+      flash[:danger] = t '.flash.not_authirize'
       redirect_to(request.referer || root_path)
     end
   end

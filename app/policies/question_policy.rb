@@ -1,5 +1,6 @@
-class QuestionPolicy < ApplicationPolicy
+# frozen_string_literal: true
 
+class QuestionPolicy < ApplicationPolicy
   def index?
     true
   end

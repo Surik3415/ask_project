@@ -7,6 +7,8 @@ class GalleryController < ApplicationController
   include Pagy::Backend
   include Pagy::Frontend
 
+  # rubocop: disable Metrics/AbcSize
+
   def index
     response = Faraday.get("https://api.harvardartmuseums.org/#{SECTION}?apikey=#{API_KEY}")
 
@@ -17,4 +19,5 @@ class GalleryController < ApplicationController
 
     @pagy, @parsed_response = pagy_array(parsed_response, items: 10)
   end
+  # rubocop:enable Metrics/AbcSize
 end

@@ -7,6 +7,8 @@ class SessionsController < ApplicationController
 
   def new; end
 
+  # rubocop: disable Metrics/AbcSize
+
   def create
     if @user&.authenticate(params[:password])
       remember(@user) if params[:remember_token] == 1
@@ -14,10 +16,11 @@ class SessionsController < ApplicationController
       flash[:success] = "Welcome back, #{current_user.name_or_email}"
       redirect_to root_path
     else
-      flash[:warning] = 'Incorrect email and/or password'
+      flash[:warning] = t '.invalid_creds'
       render :new
     end
   end
+  # rubocop: enable Metrics/AbcSize
 
   def destroy
     sign_out

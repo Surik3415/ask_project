@@ -23,7 +23,7 @@ module Admin
     def create
       if params[:archive].present?
         UserBulkService.call params[:archive]
-        flash[:success] = 'Users imported!'
+        flash[:success] = t '.success'
       end
 
       redirect_to admin_users_path
@@ -31,7 +31,7 @@ module Admin
 
     def update
       if @user&.update(user_params)
-        flash[:success] = 'Your user info was updated!'
+        flash[:success] = t '.success'
         redirect_to admin_users_path
       else
         render :edit

@@ -1,5 +1,6 @@
-class CommentPolicy < ApplicationPolicy
+# frozen_string_literal: true
 
+class CommentPolicy < ApplicationPolicy
   def index?
     true
   end

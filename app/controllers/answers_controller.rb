@@ -14,7 +14,7 @@ class AnswersController < ApplicationController
     @answer = @question.answers.build(answer_create_params).decorate
 
     if @answer.save
-      flash[:success] = 'Answer created'
+      flash[:success] = t '.success'
       redirect_to question_path(@question)
     else
       @answers = Answer.includes(:user).order created_at: :desc
@@ -24,7 +24,7 @@ class AnswersController < ApplicationController
 
   def update
     if @answer&.update answer_update_params
-      flash[:success] = 'Answer updated'
+      flash[:success] = t '.success'
       redirect_to question_path(@question, anchor: "answer-#{@answer.id}")
     else
       @answers = @question.decorate.answers.order created_at: :desc
@@ -34,7 +34,7 @@ class AnswersController < ApplicationController
 
   def destroy
     if @answer&.destroy
-      flash[:success] = 'Answer deleted'
+      flash[:success] = t '.success'
       redirect_to question_path(@question)
     else
       @answers = @question.answers.order created_at: :desc

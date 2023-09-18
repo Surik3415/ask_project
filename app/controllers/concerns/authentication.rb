@@ -3,6 +3,7 @@
 module Authentication
   extend ActiveSupport::Concern
 
+  # rubocop:disable Metrics/BlockLength
   included do
     private
 
@@ -55,17 +56,18 @@ module Authentication
     def require_not_authentication
       return unless user_singned_in?
 
-      flash[:warning] = 'You are already sign in!'
+      flash[:warning] = t '.global.flash.already_signed_in'
       redirect_to root_path
     end
 
     def require_authentication
       return if user_singned_in?
 
-      flash[:warning] = 'You are not sign in!'
+      flash[:warning] = t '.global.flash.not_signed_in'
       redirect_to root_path
     end
 
     helper_method :current_user, :user_singned_in?
   end
+  # rubocop:enable Metrics/BlockLength
 end

@@ -6,5 +6,4 @@ class ApplicationController < ActionController::Base
   include Authentication
   include Internationalization
   include Authorization
-
 end

@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :answers, dependent: :destroy
 
   validate :password_presence
-  validate :correct_old_password, on: :update, if: -> { password.present? && !admin_edit } 
+  validate :correct_old_password, on: :update, if: -> { password.present? && !admin_edit }
   validates :password, confirmation: true, allow_blank: true,
                        length: { minimum: 8, maximum: 70 }
 
@@ -27,6 +27,8 @@ class User < ApplicationRecord
     obj.user == self
   end
 
+  # rubocop: disable Rails/SkipsModelValidations
+
   def remember_me
     self.remember_token = SecureRandom.urlsafe_base64
     update_column :remember_token_digest, digest(remember_token)
@@ -36,6 +38,8 @@ class User < ApplicationRecord
     update_column :remember_token_digest, nil
     self.remember_token = nil
   end
+
+  # rubocop: enable Rails/SkipsModelValidations
 
   def remember_token_authenticated?(remember_token)
     return false if remember_token_digest.blank?
@@ -73,8 +77,9 @@ class User < ApplicationRecord
     return if password.blank? || password =~ /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/
 
     errors.add :password,
-               'complexity requirement not met. Length should be 8-70 characters and include: 1 uppercase, 1 lowercase' \
-               '1 digit and 1 special character'
+               'complexity requirement not met. Length should be 8-70 characters and include: 1 uppercase, 1 lowercase'
+ \
+    '1 digit and 1 special character'
   end
 
   def password_presence

@@ -7,7 +7,7 @@ class ApplicationPolicy
     @user = user || GuestUser.new
     @record = record
   end
-  
+
   def index?
     false
   end

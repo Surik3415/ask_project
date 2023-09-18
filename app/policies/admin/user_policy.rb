@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Admin
   class UserPolicy < ApplicationPolicy
-
     def index?
       @user.admin_role? || @user.moderator_role?
     end
